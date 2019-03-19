@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import AuthContext from "../../context/auth";
 
 const NavBarMain = styled.header`
   color: white;
@@ -50,6 +51,7 @@ const NavBarMain = styled.header`
 `;
 
 function NavBar(props) {
+  const authContext = useContext(AuthContext);
   return (
     <NavBarMain>
       <div>
@@ -57,15 +59,15 @@ function NavBar(props) {
       </div>
       <nav>
         <ul>
-          <li>
+          {!authContext.token && <li>
             <NavLink to="/login">Auth</NavLink>
-          </li>
+          </li>}
           <li>
             <NavLink to="/bookings">Bookings</NavLink>
           </li>
-          <li>
+          {authContext.token && <li>
             <NavLink to="/events">Events</NavLink>
-          </li>
+          </li>}
         </ul>
       </nav>
     </NavBarMain>

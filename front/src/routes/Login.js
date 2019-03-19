@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import styled from "styled-components";
+import AuthContext from './../context/auth';
 
 const Form = styled.form`
   width: 25rem;
@@ -53,8 +54,12 @@ function Login() {
     setIsLogin(!isLogin);
   };
 
+  const authContext = useContext(AuthContext);
+  
+
   const submitHandler = event => {
     event.preventDefault();
+    console.log(authContext);
     const email = emailEl.current.value;
     const password = passwordEl.current.value;
 
@@ -102,7 +107,12 @@ function Login() {
         return res.json();
       })
       .then(data => {
-        console.log(data);
+        if(isLogin) {
+          const token =data.data.login.token;
+          const userId = data.data.login.userId;
+          const tokenExpiration = data.data.tokenExpiration;
+          authContext.login(token, userId, tokenExpiration);
+        }
       })
       .catch(err => {
         console.log(err);
