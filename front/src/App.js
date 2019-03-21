@@ -40,11 +40,13 @@ function App() {
       <NavBar />
         <Main>
           <Switch>
-            {!token && <Redirect exact from="/" to="/login" />}
-            {token && <Redirect exact from="/" to="/events" />}
+            {/* {!token && <Redirect exact from="/events" to="/login" />}
+            {!token && <Redirect exact from="/bookings" to="/login" />}
+            {token && <Redirect exact from="/" to="/events" />} */}
             {token && <Redirect exact from="/login" to="/events" />}
             {!token && <Route path="/login" component={Login} />}
             <Route path="/events" component={Events} />
+            {!token && <Redirect exact  to="/login" />}
             {token && <Route path="/bookings" component={Bookings} />}
           </Switch>
         </Main>

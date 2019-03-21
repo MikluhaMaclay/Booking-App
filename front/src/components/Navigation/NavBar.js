@@ -28,6 +28,7 @@ const NavBarMain = styled.header`
       list-style: none;
       padding: 0;
       margin: 0;
+      
 
       > li {
         margin: 0 1rem;
@@ -35,6 +36,7 @@ const NavBarMain = styled.header`
         > a {
           text-decoration: none;
           color: white;
+          cursor: pointer;
 
           &:hover,
           &:active {
@@ -62,11 +64,14 @@ function NavBar(props) {
           {!authContext.token && <li>
             <NavLink to="/login">Auth</NavLink>
           </li>}
+          {authContext.token && <li>
+            <a onClick={authContext.logout}>Logout</a>
+          </li>}
           <li>
-            <NavLink to="/bookings">Bookings</NavLink>
+            <NavLink to="/events">Events</NavLink>
           </li>
           {authContext.token && <li>
-            <NavLink to="/events">Events</NavLink>
+            <NavLink to="/bookings">Bookings</NavLink>
           </li>}
         </ul>
       </nav>

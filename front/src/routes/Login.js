@@ -37,6 +37,7 @@ const FormActions = styled.div`
     &:hover,
     &:active {
       box-shadow: 2px 2px 5px rgba(219, 112, 147, 0.7);
+      background-color: #de7d9c;
     }
 
     &:focus {
@@ -59,7 +60,6 @@ function Login() {
 
   const submitHandler = event => {
     event.preventDefault();
-    console.log(authContext);
     const email = emailEl.current.value;
     const password = passwordEl.current.value;
 
